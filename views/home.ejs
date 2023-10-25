@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="author">
+        <h1 class="author__heading">Welcome to the myThoughts</h1>
+    </div>
+
+    <img src="/img/programmer.jpg" alt="a programmer" class="hero-image">
+
+    <section class="articles">
+        <h2 class="articles__heading">Latest Posts</h2>
+        <ul class="article-ul">
+            <% data.forEach(post => { %>
+                <% if (post.state === 'published') { %>
+                    <li>
+                        <a href="/post/<%= post._id %>" class="article-link">
+                            <div class="article-info">
+                                <h3><%= post.title %></h3>
+                                <p><%= post.description %></p>
+                                <p>Author: <%= firstname %></p>
+                                <div class="tags">
+                                        <span class="tag">#<%= post.tags %></span>
+                                </div>
+                            </div>
+                            <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
+                        </a>
+
+                    </li>
+
+                <% } %>
+            <% }) %>
+        </ul>
+
+        <% if (nextPage !== null) { %>
+            <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+        <% } %>
+    </section>
+</div>
